@@ -18,13 +18,11 @@ void genFeeds(int ind) //make a vector of the feeds we want (given by i)
 {
     feeds.clear();
     for (int i = 0; i < G; i++)
-    {
-        int a = ind & -ind;
         if (pow(2,i) == (ind & -ind)) {
             ind -= (ind & -ind);
             feeds.push_back(i + 1);
         }
-    }
+    
 }
 bool works(int ind) //does this feed config work?
 {
@@ -32,10 +30,9 @@ bool works(int ind) //does this feed config work?
     for(int i=1;i<=V;i++) test[i] = 0;
 
     for (auto &next: feeds)
-    {
         for (int i = 1; i <= V; i++)
             test[i] += g[next][i];
-    }
+        
     for (int i = 1; i <= V; i++)
         if (test[i] < v[i])
             return 0;
